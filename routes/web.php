@@ -16,3 +16,4 @@ Route::get('/', function () {
 });
 Route::get('/', 'LocalLiteBrite@index');
 Route::post('/create-submission', 'LocalLiteBrite@store');
+Route::post('/upload-submission', 'LocalLiteBrite@upload');

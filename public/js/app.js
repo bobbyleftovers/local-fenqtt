@@ -67681,15 +67681,47 @@ function (_Component) {
     });
 
     _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "handleSubmit", function () {
-      console.log(_this.state.screenshot);
+      // console.log(this.state.screenshot);
       axios__WEBPACK_IMPORTED_MODULE_5___default.a.post('/create-submission', {
         screenshot: _this.state.screenshot
       }).then(function (res) {
         console.log(res); // check response, if all is well, trigger the upload
+        // Axios.get(`/upload/${res.data.id}`).then(res => {
+        //     console.log(res);
+        // });
+      }).catch(function (error) {
+        // log out the error
+        var message = "ERROR: "; // loader
 
-        axios__WEBPACK_IMPORTED_MODULE_5___default.a.get("/upload/".concat(res.data.id)).then(function (res) {
-          console.log(res);
-        });
+        _this.tableLoading = false; // Error
+
+        if (error.response) {
+          // The request was made and the server responded with a status code
+          // that falls out of the range of 2xx
+          message += error.response.status + "; " + error.response.data.message;
+          console.log(error.response.data);
+          console.log(error.response.status);
+          console.log(error.response.headers);
+        } else if (error.request) {
+          // The request was made but no response was received
+          // `error.request` is an instance of XMLHttpRequest in the browser and an instance of
+          // http.ClientRequest in node.js
+          message += error.request;
+          console.log(error.request);
+        } else {
+          // Something happened in setting up the request that triggered an Error
+          message += error.message;
+          console.log('ERROR:', error.message);
+        }
+
+        console.log('ERROR CONFIG:', error.config, message);
+        message += " (see console)"; // Show toast with error message
+        // this.$toast.open({
+        //     duration: 5000,
+        //     message: message,
+        //     position: 'is-bottom',
+        //     type: 'is-danger'
+        // });
       });
     });
 
@@ -67722,11 +67754,11 @@ function (_Component) {
         className: "card-header"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", {
         className: "title is-1"
-      }, "The Brite Lites")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }, "Photobooooth!")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "card-body"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", {
         className: "subtitle is-4"
-      }, "Click the button to take your photo"))))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bulma_components_lib_components_columns__WEBPACK_IMPORTED_MODULE_1___default.a, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bulma_components_lib_components_columns__WEBPACK_IMPORTED_MODULE_1___default.a.Column, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_webcam__WEBPACK_IMPORTED_MODULE_4___default.a, {
+      }, "Click the button to take snapshot for the photobooth! Bam!"))))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bulma_components_lib_components_columns__WEBPACK_IMPORTED_MODULE_1___default.a, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bulma_components_lib_components_columns__WEBPACK_IMPORTED_MODULE_1___default.a.Column, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_webcam__WEBPACK_IMPORTED_MODULE_4___default.a, {
         audio: false,
         ref: this.setRef,
         screenshotFormat: "image/jpeg",
