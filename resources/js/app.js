@@ -1,4 +1,7 @@
-
+import React from 'react';
+import { render } from 'react-dom';
+import { BrowserRouter } from 'react-router-dom';
+import Main from './components/Main';
 /**
  * First we will load all of this project's JavaScript dependencies which
  * includes React and other helpers. It's a great starting point while
@@ -13,4 +16,15 @@ require('./bootstrap');
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
-require('./components/Example');
+require('../../node_modules/react-bulma-components/dist');
+
+const app = document.querySelector('#app');
+
+if (app) {
+    render(
+        <BrowserRouter basename="/">
+            <Main />
+        </BrowserRouter>,
+        document.querySelector('#app')
+    );
+}

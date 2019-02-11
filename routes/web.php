@@ -1,5 +1,4 @@
 <?php
-
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -9,8 +8,11 @@
 | routes are loaded by the RouteServiceProvider within a group which
 | contains the "web" middleware group. Now create something great!
 |
-*/
+ */
 
 Route::get('/', function () {
+    // Log::info('Test');
     return view('welcome');
 });
+Route::get('/', 'LocalLiteBrite@index');
+Route::post('/create-submission', 'LocalLiteBrite@store');
