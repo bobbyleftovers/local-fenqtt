@@ -19,23 +19,19 @@ class Home extends Component {
     }
 
     handleCapture = () => {
-        console.log('click');
         const screenshot = this.webcam.getScreenshot();
         this.setState({ screenshot: screenshot });
     };
 
     handleSubmit = () => {
-        // console.log(this.state.screenshot);
         Axios.post('/create-submission', {
             screenshot: this.state.screenshot,
         })
             .then(res => {
-                console.log(res);
-
                 // check response, if all is well, trigger the upload
-                // Axios.get(`/upload/${res.data.id}`).then(res => {
-                //     console.log(res);
-                // });
+                Axios.get(`/upload-submission/${res.data.id}`).then(res => {
+                    console.log(res);
+                });
             })
             .catch(error => {
                 // log out the error
@@ -95,7 +91,6 @@ class Home extends Component {
             height: 720,
             facingMode: 'user',
         };
-        console.log(this.setRef);
         return (
             <div>
                 <Columns>
@@ -107,7 +102,7 @@ class Home extends Component {
 
                             <div className="card-body">
                                 <h2 className="subtitle is-4">
-                                    Click the button to take snapshot for the
+                                    Click the button to take snapshots for the
                                     photobooth! Bam!
                                 </h2>
                             </div>
@@ -130,21 +125,6 @@ class Home extends Component {
             </div>
         );
     }
-
-    // capture = () =>
-    // {
-    //     const imageSrc = this.webcam.getScreenshot();
-    // };
-
-    // render()
-    // {
-
-    //     return (
-    //         <div>
-    //             <button onClick={this.capture}>Capture photo</button>
-    //         </div>
-    //     );
-    // }
 }
 
 export default Home;

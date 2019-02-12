@@ -15,9 +15,6 @@
         <title>FenQTT</title>
 
         <!-- Styles -->
-        <!-- <link rel="stylesheet" type="text/css" href="{{ asset('fonts/aller.css') }}"/>
-        <link rel="stylesheet" type="text/css" href="{{ asset('fonts/codepro.css') }}"/>
-        <link rel="stylesheet" type="text/css" href="{{ asset('fonts/codepro-light.css') }}"/> -->
         <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     </head>
     <body>

@@ -10,10 +10,6 @@
 |
  */
 
-Route::get('/', function () {
-    // Log::info('Test');
-    return view('welcome');
-});
 Route::get('/', 'LocalLiteBrite@index');
 Route::post('/create-submission', 'LocalLiteBrite@store');
-Route::post('/upload-submission', 'LocalLiteBrite@upload');
+Route::get('/upload-submission/{id}', 'LocalLiteBrite@upload');

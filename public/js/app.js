@@ -67671,8 +67671,6 @@ function (_Component) {
     });
 
     _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "handleCapture", function () {
-      console.log('click');
-
       var screenshot = _this.webcam.getScreenshot();
 
       _this.setState({
@@ -67681,14 +67679,13 @@ function (_Component) {
     });
 
     _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "handleSubmit", function () {
-      // console.log(this.state.screenshot);
       axios__WEBPACK_IMPORTED_MODULE_5___default.a.post('/create-submission', {
         screenshot: _this.state.screenshot
       }).then(function (res) {
-        console.log(res); // check response, if all is well, trigger the upload
-        // Axios.get(`/upload/${res.data.id}`).then(res => {
-        //     console.log(res);
-        // });
+        // check response, if all is well, trigger the upload
+        axios__WEBPACK_IMPORTED_MODULE_5___default.a.get("/upload-submission/".concat(res.data.id)).then(function (res) {
+          console.log(res);
+        });
       }).catch(function (error) {
         // log out the error
         var message = "ERROR: "; // loader
@@ -67749,7 +67746,6 @@ function (_Component) {
         height: 720,
         facingMode: 'user'
       };
-      console.log(this.setRef);
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bulma_components_lib_components_columns__WEBPACK_IMPORTED_MODULE_1___default.a, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bulma_components_lib_components_columns__WEBPACK_IMPORTED_MODULE_1___default.a.Column, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bulma_components_lib_components_box__WEBPACK_IMPORTED_MODULE_2___default.a, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "card-header"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", {
@@ -67758,7 +67754,7 @@ function (_Component) {
         className: "card-body"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", {
         className: "subtitle is-4"
-      }, "Click the button to take snapshot for the photobooth! Bam!"))))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bulma_components_lib_components_columns__WEBPACK_IMPORTED_MODULE_1___default.a, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bulma_components_lib_components_columns__WEBPACK_IMPORTED_MODULE_1___default.a.Column, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_webcam__WEBPACK_IMPORTED_MODULE_4___default.a, {
+      }, "Click the button to take snapshots for the photobooth! Bam!"))))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bulma_components_lib_components_columns__WEBPACK_IMPORTED_MODULE_1___default.a, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bulma_components_lib_components_columns__WEBPACK_IMPORTED_MODULE_1___default.a.Column, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_webcam__WEBPACK_IMPORTED_MODULE_4___default.a, {
         audio: false,
         ref: this.setRef,
         screenshotFormat: "image/jpeg",
@@ -67766,19 +67762,7 @@ function (_Component) {
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("hr", null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bulma_components_lib_components_button__WEBPACK_IMPORTED_MODULE_3___default.a, {
         onClick: this.handleCapture
       }, "Capture")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bulma_components_lib_components_columns__WEBPACK_IMPORTED_MODULE_1___default.a.Column, null, screenshot)));
-    } // capture = () =>
-    // {
-    //     const imageSrc = this.webcam.getScreenshot();
-    // };
-    // render()
-    // {
-    //     return (
-    //         <div>
-    //             <button onClick={this.capture}>Capture photo</button>
-    //         </div>
-    //     );
-    // }
-
+    }
   }]);
 
   return Home;
