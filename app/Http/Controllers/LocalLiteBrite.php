@@ -26,7 +26,7 @@ class LocalLiteBrite extends Controller
         $submission->f_name = ($request['f_name']) ? $request['f_name'] : '';
         $submission->l_name = ($request['l_name']) ? $request['l_name'] : '';
         $submission->email = ($request['email']) ? $request['email'] : '';
-        $submission->filename = ($request['filename']) ? $request['filename'] : 'liteBrite-' . Carbon::now()->timestamp() . '.jpg';
+        $submission->filename = ($request['filename']) ? $request['filename'] : 'liteBrite-' . Carbon::now()->timestamp . '.jpg';
         $submission->save();
         
         // done
@@ -50,7 +50,12 @@ class LocalLiteBrite extends Controller
             ))
             ->post();
 
+        $decoded = json_decode($response);
+        $submission->foreign_id = $decoded->id;
+        $submission->config_id = $decoded->config_id;
+        $submission->save();
+
         // done
-        return response()->json([$response]);
+        return response()->json($decoded);
     }
 }
