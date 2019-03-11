@@ -10,14 +10,15 @@ from neopixel import *
 import argparse
  
 # LED strip configuration:
-LED_COUNT      = 60      # Number of LED pixels.
-LED_PIN        = 18      # GPIO pin connected to the pixels (18 uses PWM!).
-#LED_PIN        = 10      # GPIO pin connected to the pixels (10 uses SPI /dev/spidev0.0).
-LED_FREQ_HZ    = 800000  # LED signal frequency in hertz (usually 800khz)
-LED_DMA        = 10      # DMA channel to use for generating signal (try 10)
-LED_BRIGHTNESS = 255     # Set to 0 for darkest and 255 for brightest
-LED_INVERT     = False   # True to invert the signal (when using NPN transistor level shift)
-LED_CHANNEL    = 0       # set to '1' for GPIOs 13, 19, 41, 45 or 53
+PANEL_WIDTH    = 20         # Width of panel
+LED_COUNT      = 300        # Number of LED pixels.
+LED_PIN        = 18         # GPIO pin connected to the pixels (18 uses PWM!).
+#LED_PIN       = 10         # GPIO pin connected to the pixels (10 uses SPI /dev/spidev0.0).
+LED_FREQ_HZ    = 800000     # LED signal frequency in hertz (usually 800khz)
+LED_DMA        = 10         # DMA channel to use for generating signal (try 10)
+LED_BRIGHTNESS = 255        # Set to 0 for darkest and 255 for brightest
+LED_INVERT     = False      # True to invert the signal (when using NPN transistor level shift)
+LED_CHANNEL    = 0          # set to '1' for GPIOs 13, 19, 41, 45 or 53
  
  
  
@@ -78,6 +79,50 @@ def theaterChaseRainbow(strip, wait_ms=50):
             for i in range(0, strip.numPixels(), 3):
                 strip.setPixelColor(i+q, 0)
  
+def myTest(strip):
+    print('Panel test...')
+    
+    # First and last
+    print('First and last')
+    strip.setPixelColor(0,Color(255,255,255)) # first
+    strip.setPixelColor(strip.numPixels() - 1,Color(255,255,255)) # last
+    strip.show()
+    time.sleep(wait_ms/3000.0)
+    colorWipe(strip, Color(0,0,0), 10)
+    
+    # Each row
+    print('First in each row')
+    pixel_index = 0
+    while pixel_index < strip.numPixels():
+        print('Set pixel ' + pixel_index)
+        strip.setPixelColor(pixel_index,Color(255,255,255))
+        pixel_index = pixel_index + PANEL_WIDTH
+    strip.show()
+    time.sleep(wait_ms/3000.0)
+    colorWipe(strip, Color(0,0,0), 10)
+    pixel_index = 0
+    
+    # Each column
+    print('First in each column')
+    while pixel_index < PANEL_WIDTH:
+        print('Set pixel ' + pixel_index)
+        strip.setPixelColor(pixel_index,Color(255,255,255))
+        pixel_index++
+    strip.show()
+    time.sleep(wait_ms/3000.0)
+    colorWipe(strip, Color(0,0,0), 10)
+    
+    # Diagonal wipe top-left to bottom-right
+    strip.show()
+    time.sleep(wait_ms/3000.0)
+    colorWipe(strip, Color(0,0,0), 10)
+    
+    # Diagonal wipe top-right to bottom-left
+    strip.show()
+    time.sleep(wait_ms/3000.0)
+    colorWipe(strip, Color(0,0,0), 10)
+    print('Test finished.')
+
 # Main program logic follows:
 if __name__ == '__main__':
     # Process arguments
@@ -87,6 +132,7 @@ if __name__ == '__main__':
  
     # Create NeoPixel object with appropriate configuration.
     strip = Adafruit_NeoPixel(LED_COUNT, LED_PIN, LED_FREQ_HZ, LED_DMA, LED_INVERT, LED_BRIGHTNESS, LED_CHANNEL)
+    
     # Intialize the library (must be called once before other functions).
     strip.begin()
  
@@ -97,18 +143,20 @@ if __name__ == '__main__':
     try:
  
         while True:
-            print ('Color wipe animations.')
-            colorWipe(strip, Color(255, 0, 0))  # Red wipe
-            colorWipe(strip, Color(0, 255, 0))  # Blue wipe
-            colorWipe(strip, Color(0, 0, 255))  # Green wipe
-            print ('Theater chase animations.')
-            theaterChase(strip, Color(127, 127, 127))  # White theater chase
-            theaterChase(strip, Color(127,   0,   0))  # Red theater chase
-            theaterChase(strip, Color(  0,   0, 127))  # Blue theater chase
-            print ('Rainbow animations.')
-            rainbow(strip)
-            rainbowCycle(strip)
-            theaterChaseRainbow(strip)
+            # print ('Color wipe animations.')
+            # colorWipe(strip, Color(255, 0, 0))  # Red wipe
+            # colorWipe(strip, Color(0, 255, 0))  # Blue wipe
+            # colorWipe(strip, Color(0, 0, 255))  # Green wipe
+            # print ('Theater chase animations.')
+            # theaterChase(strip, Color(127, 127, 127))  # White theater chase
+            # theaterChase(strip, Color(127,   0,   0))  # Red theater chase
+            # theaterChase(strip, Color(  0,   0, 127))  # Blue theater chase
+            # print ('Rainbow animations.')
+            # rainbow(strip)
+            # rainbowCycle(strip)
+            # theaterChaseRainbow(strip)
+            # Run my test:
+            myTest(strip)
  
     except KeyboardInterrupt:
         if args.clear:
