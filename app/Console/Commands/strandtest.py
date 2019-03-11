@@ -88,7 +88,7 @@ def myTest(strip):
     strip.setPixelColor(strip.numPixels() - 1,Color(255,255,255)) # last
     strip.show()
     time.sleep(wait_ms/3000.0)
-    colorWipe(strip, Color(0,0,0), 10)
+    colorWipe(strip, Color(0,0,0), 5)
     
     # Each row
     print('First in each row')
@@ -96,10 +96,10 @@ def myTest(strip):
     while pixel_index < strip.numPixels():
         print('Set pixel ' + pixel_index)
         strip.setPixelColor(pixel_index,Color(255,255,255))
-        pixel_index = pixel_index + PANEL_WIDTH
+        pixel_index += PANEL_WIDTH
     strip.show()
-    time.sleep(wait_ms/3000.0)
-    colorWipe(strip, Color(0,0,0), 10)
+    time.sleep(3000.0)
+    colorWipe(strip, Color(0,0,0), 5)
     pixel_index = 0
     
     # Each column
@@ -107,24 +107,46 @@ def myTest(strip):
     while pixel_index < PANEL_WIDTH:
         print('Set pixel ' + pixel_index)
         strip.setPixelColor(pixel_index,Color(255,255,255))
-        pixel_index++
+        pixel_index += 1
     strip.show()
-    time.sleep(wait_ms/3000.0)
-    colorWipe(strip, Color(0,0,0), 10)
+    time.sleep(3000.0)
+    colorWipe(strip, Color(0,0,0), 5)
+    pixel_index = 0
+
+    #Fade the whole panel in/out
+    print('Fade the whole panel')
+    for dim in range(LED_BRIGHTNESS):
+        for i in range(strip.numPixels()):
+            strip.setPixelColor(i, Color(dim,dim,dim))
+            strip.show()
+            time.sleep(150.0)
+    time.sleep(3000.0)
+    colorWipe(strip, Color(0,0,0), 5)
+
+    # Wipe top to bottom
+    # strip.show()
+    # time.sleep(wait_ms/3000.0)
+    # colorWipe(strip, Color(0,0,0), 10)
+
+    # Wipe left to right
+    # strip.show()
+    # time.sleep(wait_ms/3000.0)
+    # colorWipe(strip, Color(0,0,0), 10)
     
     # Diagonal wipe top-left to bottom-right
-    strip.show()
-    time.sleep(wait_ms/3000.0)
-    colorWipe(strip, Color(0,0,0), 10)
+    # strip.show()
+    # time.sleep(wait_ms/3000.0)
+    # colorWipe(strip, Color(0,0,0), 10)
     
     # Diagonal wipe top-right to bottom-left
-    strip.show()
-    time.sleep(wait_ms/3000.0)
-    colorWipe(strip, Color(0,0,0), 10)
+    # strip.show()
+    # time.sleep(wait_ms/3000.0)
+    # colorWipe(strip, Color(0,0,0), 10)
     print('Test finished.')
 
 # Main program logic follows:
 if __name__ == '__main__':
+
     # Process arguments
     parser = argparse.ArgumentParser()
     parser.add_argument('-c', '--clear', action='store_true', help='clear the display on exit')
@@ -141,7 +163,9 @@ if __name__ == '__main__':
         print('Use "-c" argument to clear LEDs on exit')
  
     try:
- 
+        # Run my test:
+        myTest(strip)
+
         while True:
             # print ('Color wipe animations.')
             # colorWipe(strip, Color(255, 0, 0))  # Red wipe
@@ -155,8 +179,6 @@ if __name__ == '__main__':
             # rainbow(strip)
             # rainbowCycle(strip)
             # theaterChaseRainbow(strip)
-            # Run my test:
-            myTest(strip)
  
     except KeyboardInterrupt:
         if args.clear:
