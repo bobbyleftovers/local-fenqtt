@@ -117,22 +117,40 @@ def myTest(strip):
     print('Fade the whole panel')
     for dim in range(LED_BRIGHTNESS):
         for i in range(strip.numPixels()):
-            strip.setPixelColor(i, Color(dim,dim,dim))
+            strip.setPixelColor(i, Color(dim, dim, dim))
             strip.show()
             time.sleep(150.0)
     time.sleep(3000.0)
     colorWipe(strip, Color(0,0,0), 5)
 
     # Wipe top to bottom
-    # strip.show()
-    # time.sleep(wait_ms/3000.0)
-    # colorWipe(strip, Color(0,0,0), 10)
+    print('Wipe top to bottom')
+    row_index = 0
+    while row_index < strip.numPixels / PANEL_WIDTH:
+        for pixel_index in range(strip.numPixels()):
+            strip.setPixelColor(pixel_index, Color(255,255,255))
+            if pixel_index / row_index = 1
+            break
+        strip.show()
+        time.sleep(500)
+        colorWipe(strip,Color(0,0,0),0)
+        row_index += 1
+    row_index = 0
 
     # Wipe left to right
-    # strip.show()
-    # time.sleep(wait_ms/3000.0)
-    # colorWipe(strip, Color(0,0,0), 10)
-    
+    print('Wipe left to right')
+    col_index = 0
+    while col_index < PANEL_WIDTH:
+        for pixel_index in range(strip.numPixels()):
+            strip.setPixelColor(pixel_index, Color(255,255,255))
+            if pixel_index / row_index = 1
+            break
+        strip.show()
+        time.sleep(500)
+        colorWipe(strip,Color(0,0,0),0)
+        col_index += 1
+    col_index = 0
+
     # Diagonal wipe top-left to bottom-right
     # strip.show()
     # time.sleep(wait_ms/3000.0)
