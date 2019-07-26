@@ -1,4 +1,4 @@
-### WIP: Lite Brite (Local Setup)
+# WIP: Lite Brite (Local Setup)
 This is a laravel app which controls two things: a photo booth camera and the panel of lights the results show up on. The purpose here is to have an interactive installation that saves data to a public, offsite location. This is the local setup of a two-part project. The other part can be found [here](https://github.com/bobbyleftovers/fen-qtt)
 
 ## What?
