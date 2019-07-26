@@ -8,4 +8,5 @@ A user gets in front of the camera and presses a button to take the snapshot. Th
 There are a number of moving parts with this:
 - A Rapberry Pi: Run the web server, take the snapshots, and send the data to the light panel according to the desired configuration
 - Camera: A small camera sold for Rasperry Pi. Takes pretty nice photos.
-- Light panels: Hand built grid of lights using [These LED strips](https://smile.amazon.com/jiachenled-flexible-Daylight-Non-waterproof-celebration/dp/B071JNJMS3?pf_rd_p=9dce798c-bef4-4763-ad3c-c17e34738b8b&pd_rd_wg=CqLyz&pf_rd_r=139W811F1DQS15DDKC7W&ref_=pd_gw_bia_d0&pd_rd_w=MC218&pd_rd_r=b9ba1433-45a4-41a4-9c15-e496fda95192)
+- Light panels: Hand built grid of lights using [These LED strips](https://smile.amazon.com/jiachenled-flexible-Daylight-Non-waterproof-celebration/dp/B071JNJMS3?pf_rd_p=9dce798c-bef4-4763-ad3c-c17e34738b8b&pd_rd_wg=CqLyz&pf_rd_r=139W811F1DQS15DDKC7W&ref_=pd_gw_bia_d0&pd_rd_w=MC218&pd_rd_r=b9ba1433-45a4-41a4-9c15-e496fda95192). Each LED is individually addressable, so they act as pixels. These are wired into the GPIO pins on the Raspberry Pi and are triggered by Laravel calling a python script.
+- Python: Laravel calls to a python script pass JSON data containing RGB and dimmness values for each pixel. It is a large data set. This part is currently incomplete.
