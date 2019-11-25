@@ -1,26 +1,26 @@
-import React, { Component } from 'react';
-import { Route } from 'react-router-dom';
+import React, { Component } from 'react'
+import { Route } from 'react-router-dom'
 
-import Home from './Home/Home';
+import Home from './Home/Home'
 // import Config from './Config/Config';
 // import SubmissionMain from './Submissions/SubmissionMain';
-import Container from 'react-bulma-components/lib/components/container';
+import Container from 'react-bulma-components/lib/components/container'
 
 class Main extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            // response: null
-        };
+  constructor (props) {
+    super(props)
+    this.state = {
+      // response: null
     }
+  }
 
-    render() {
-        return (
-            <Container>
-                <Route path="/" exact component={Home} />
-            </Container>
-        );
-    }
+  render () {
+    return (
+      <Container>
+        <Route path='/' exact component={Home} />
+      </Container>
+    )
+  }
 }
 
-export default Main;
+export default Main

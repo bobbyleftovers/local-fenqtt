@@ -124,32 +124,32 @@ def myTest(strip):
     colorWipe(strip, Color(0,0,0), 5)
 
     # Wipe top to bottom
-    print('Wipe top to bottom')
-    row_index = 0
-    while row_index < strip.numPixels / PANEL_WIDTH:
-        for pixel_index in range(strip.numPixels()):
-            strip.setPixelColor(pixel_index, Color(255,255,255))
-            if pixel_index / row_index = 1
-            break
-        strip.show()
-        time.sleep(500)
-        colorWipe(strip,Color(0,0,0),0)
-        row_index += 1
-    row_index = 0
+    # print('Wipe top to bottom')
+    # row_index = 0
+    # while row_index < strip.numPixels / PANEL_WIDTH:
+    #     for pixel_index in range(strip.numPixels()):
+    #         strip.setPixelColor(pixel_index, Color(255,255,255))
+    #         if pixel_index / row_index = 1
+    #         break
+    #     strip.show()
+    #     time.sleep(500)
+    #     colorWipe(strip,Color(0,0,0),0)
+    #     row_index += 1
+    # row_index = 0
 
     # Wipe left to right
-    print('Wipe left to right')
-    col_index = 0
-    while col_index < PANEL_WIDTH:
-        for pixel_index in range(strip.numPixels()):
-            strip.setPixelColor(pixel_index, Color(255,255,255))
-            if pixel_index / row_index = 1
-            break
-        strip.show()
-        time.sleep(500)
-        colorWipe(strip,Color(0,0,0),0)
-        col_index += 1
-    col_index = 0
+    # print('Wipe left to right')
+    # col_index = 0
+    # while col_index < PANEL_WIDTH:
+    #     for pixel_index in range(strip.numPixels()):
+    #         strip.setPixelColor(pixel_index, Color(255,255,255))
+    #         if pixel_index / row_index = 1
+    #         break
+    #     strip.show()
+    #     time.sleep(500)
+    #     colorWipe(strip,Color(0,0,0),0)
+    #     col_index += 1
+    # col_index = 0
 
     # Diagonal wipe top-left to bottom-right
     # strip.show()
